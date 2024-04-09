@@ -1,4 +1,5 @@
 import 'package:elfath_account_app/pages/layout.dart';
+import 'package:elfath_account_app/pages/renew_page.dart';
 import 'package:flutter/material.dart';
 import 'pages/login_page.dart';
 import 'pages/profile_page.dart';
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
           ),
           debugShowCheckedModeBanner: false,
           home: const Layout(),
+          routes: {
+            "/layout": (context) => Layout(),
+          },
         ));
   }
 }

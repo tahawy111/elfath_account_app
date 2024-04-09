@@ -9,7 +9,7 @@ class NotFoundPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: mobileBackgroundColor,
       body: Center(
-        child: Text("NotFoundPage"),
+        child: Text("Not Found!"),
       ),
     );
   }

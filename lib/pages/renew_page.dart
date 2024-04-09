@@ -2,7 +2,8 @@ import 'package:elfath_account_app/pages/shared/colors.dart';
 import 'package:flutter/material.dart';
 
 class RenewPage extends StatelessWidget {
-  const RenewPage({super.key});
+  final int tabIndex;
+  const RenewPage({super.key, required this.tabIndex});
 
   @override
   Widget build(BuildContext context) {
