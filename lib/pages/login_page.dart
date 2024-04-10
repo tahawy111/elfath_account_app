@@ -58,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
 
         _mybox.put("username", usernameController.text);
         _mybox.put("password", passwordController.text);
+        _mybox.put("isAuthenticated", true);
 
         return;
       } else {

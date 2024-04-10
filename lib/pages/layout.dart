@@ -24,7 +24,7 @@ class _LayoutState extends State<Layout> {
 
   Future<void> _checkAuthentication() async {
     // Example using Hive for storing authentication status
-    final Box box = await Hive.openBox('auth');
+    final Box box = await Hive.openBox('mybox');
     final bool isAuthenticated =
         box.get('isAuthenticated', defaultValue: false);
 
@@ -53,16 +53,21 @@ class _LayoutState extends State<Layout> {
       )
     ];
 
-    void handleLogout() {
-      // Perform your logout logic here
-      // For example, clear user session or navigate to login screen
+    void _handleLogout() async {
+      // Perform logout logic and update authentication status
+      // For example, clear user session or token
+
+      final Box box = Hive.box('mybox');
+      // box.put('isAuthenticated', false);
+      box.clear();
+
+      // Navigate to login page
       Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => LoginPage(
-                  tabIndex: tabIndex,
-                )),
-      );
+          context,
+          MaterialPageRoute(
+              builder: (context) => LoginPage(
+                    tabIndex: tabIndex,
+                  )));
     }
 
 // Handle tap events on bottom navigation bar items
@@ -71,7 +76,7 @@ class _LayoutState extends State<Layout> {
         tabIndex = index;
         // Logout if the logout item is tapped
         if (index == 2) {
-          handleLogout();
+          _handleLogout();
         }
       });
     }
