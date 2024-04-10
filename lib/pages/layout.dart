@@ -4,6 +4,7 @@ import 'package:elfath_account_app/pages/renew_page.dart';
 import 'package:elfath_account_app/pages/shared/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class Layout extends StatefulWidget {
   const Layout({super.key});
@@ -15,6 +16,29 @@ class Layout extends StatefulWidget {
 class _LayoutState extends State<Layout> {
   int tabIndex = 0;
   @override
+  void initState() {
+    super.initState();
+    // Check authentication status when the widget initializes
+    _checkAuthentication();
+  }
+
+  Future<void> _checkAuthentication() async {
+    // Example using Hive for storing authentication status
+    final Box box = await Hive.openBox('auth');
+    final bool isAuthenticated =
+        box.get('isAuthenticated', defaultValue: false);
+
+    // If not authenticated, navigate to the login page
+    if (!isAuthenticated) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => LoginPage(
+                    tabIndex: tabIndex,
+                  )));
+    }
+  }
+
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       // Your pages here
