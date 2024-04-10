@@ -1,5 +1,6 @@
 import 'package:elfath_account_app/pages/shared/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class ProfilePage extends StatelessWidget {
   final int tabIndex;
@@ -7,9 +8,11 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _myBox = Hive.box("mybox");
+
     return Scaffold(
       backgroundColor: mobileBackgroundColor,
-      body: Center(child: Text("Profile Page")),
+      body: Center(child: Text(_myBox.get("password"))),
     );
   }
 }

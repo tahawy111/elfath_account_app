@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:elfath_account_app/components/my_button.dart';
 import 'package:elfath_account_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:elfath_account_app/pages/shared/colors.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
@@ -26,6 +26,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     // sign in user method
+
+    final _mybox = Hive.box("mybox");
 
     Future signUserIn() async {
       setState(() {
@@ -53,6 +55,9 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           isLoading = false;
         });
+
+        _mybox.put("username", usernameController.text);
+        _mybox.put("password", passwordController.text);
 
         return;
       } else {

@@ -1,10 +1,14 @@
 import 'package:elfath_account_app/pages/layout.dart';
-import 'package:elfath_account_app/pages/renew_page.dart';
 import 'package:flutter/material.dart';
-import 'pages/login_page.dart';
-import 'pages/profile_page.dart';
+import "package:hive_flutter/hive_flutter.dart";
 
-void main() {
+void main() async {
+  // initialize hive
+  await Hive.initFlutter();
+
+  // open the box
+  var box = await Hive.openBox("mybox");
+
   runApp(const MyApp());
 }
 
