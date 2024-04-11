@@ -48,9 +48,7 @@ class _LayoutState extends State<Layout> {
       RenewPage(
         tabIndex: tabIndex,
       ), // Example page 2
-      LoginPage(
-        tabIndex: tabIndex,
-      )
+      Text("LogOut")
     ];
 
     void _handleLogout() async {
@@ -70,13 +68,37 @@ class _LayoutState extends State<Layout> {
                   )));
     }
 
+    void _showDialog() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return CupertinoAlertDialog(
+              title: Text("هل تريد بالفعل تسجيل الخروج؟"),
+              actions: [
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("لا"),
+                ),
+                MaterialButton(
+                  onPressed: () {
+                    _handleLogout();
+                  },
+                  child: Text("نعم"),
+                )
+              ],
+            );
+          });
+    }
+
 // Handle tap events on bottom navigation bar items
     void onItemTapped(int index) {
       setState(() {
         tabIndex = index;
         // Logout if the logout item is tapped
         if (index == 2) {
-          _handleLogout();
+          _showDialog();
         }
       });
     }
