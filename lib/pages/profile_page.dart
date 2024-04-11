@@ -2,12 +2,9 @@ import 'dart:convert';
 
 import 'package:elfath_account_app/components/UserData.dart';
 import 'package:elfath_account_app/components/brand.dart';
-import 'package:elfath_account_app/components/my_number.dart';
 import 'package:elfath_account_app/components/name_value.dart';
 import 'package:elfath_account_app/pages/shared/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:http/http.dart' as http;
 
@@ -78,7 +75,46 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   NameValue(
                     name: "حالة الاشتراك",
-                    value: userData!.yourPersonalAccountInfo.subscriptionState,
+                    value: userData!
+                                .yourPersonalAccountInfo.subscriptionState ==
+                            "اشتراكك نشط"
+                        ? Text(
+                            userData!.yourPersonalAccountInfo.subscriptionState,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                backgroundColor: Color(0xff00e51b)),
+                          )
+                        : userData!.yourPersonalAccountInfo.subscriptionState ==
+                                "انتهت فترة اشتراكك"
+                            ? Text(
+                                userData!
+                                    .yourPersonalAccountInfo.subscriptionState,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  backgroundColor: yellowColor,
+                                ))
+                            : userData!.yourPersonalAccountInfo
+                                        .subscriptionState
+                                        .trim() ==
+                                    "اشتراك موقوف"
+                                ? Text(
+                                    userData!.yourPersonalAccountInfo
+                                        .subscriptionState,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        backgroundColor: Color(0xffff3e3e)),
+                                  )
+                                : Text(
+                                    userData!.yourPersonalAccountInfo
+                                        .subscriptionState,
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                    textWidget: true,
                   ),
                   NameValue(
                     name: "الرصيد",
@@ -140,7 +176,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ] else ...[
                   // Placeholder or loading indicator while userData is being fetched
-                  CircularProgressIndicator(),
+                  CircularProgressIndicator(
+                    color: primaryColor,
+                  ),
                 ],
               ],
             ),

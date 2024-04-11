@@ -1,5 +1,7 @@
 import 'package:elfath_account_app/components/my_number.dart';
+import 'package:elfath_account_app/pages/shared/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Brand extends StatelessWidget {
   const Brand({super.key});
@@ -23,7 +25,16 @@ class Brand extends StatelessWidget {
             SizedBox(
               width: 10,
             ),
-            Number(number: "01117419902"),
+            // Number(number: "01117419902"),
+            Icon(
+              Icons.call,
+              color: primaryColor,
+              size: 18,
+            ),
+            Text(
+              "01117419902",
+              style: const TextStyle(fontSize: 15),
+            ),
             SizedBox(
               width: 10,
             ),

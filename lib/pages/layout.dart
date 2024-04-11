@@ -122,12 +122,13 @@ class _LayoutState extends State<Layout> {
         unselectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.person),
+            icon: Icon(Icons.person),
             label: 'الملف الشخصي',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               CupertinoIcons.money_dollar,
+              size: 25,
             ),
             label: 'تجديد الاشتراك',
           ),
