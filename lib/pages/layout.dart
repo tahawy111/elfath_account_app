@@ -15,6 +15,7 @@ class Layout extends StatefulWidget {
 
 class _LayoutState extends State<Layout> {
   int tabIndex = 0;
+  int beforeChangeTabIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -77,7 +78,11 @@ class _LayoutState extends State<Layout> {
               actions: [
                 MaterialButton(
                   onPressed: () {
+                    print("tabIndex: $beforeChangeTabIndex");
                     Navigator.pop(context);
+                    setState(() {
+                      tabIndex = beforeChangeTabIndex;
+                    });
                   },
                   child: Text("لا"),
                 ),
@@ -95,6 +100,7 @@ class _LayoutState extends State<Layout> {
 // Handle tap events on bottom navigation bar items
     void onItemTapped(int index) {
       setState(() {
+        beforeChangeTabIndex = tabIndex;
         tabIndex = index;
         // Logout if the logout item is tapped
         if (index == 2) {

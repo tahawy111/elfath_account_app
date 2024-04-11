@@ -17,17 +17,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-        textDirection: TextDirection.rtl,
-        child: MaterialApp(
-          theme: ThemeData(
-            fontFamily: 'Cairo',
-          ),
-          debugShowCheckedModeBanner: false,
-          home: const Layout(),
-          routes: {
-            "/layout": (context) => Layout(),
-          },
-        ));
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Cairo',
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const Layout(),
+      routes: {
+        "/layout": (context) => Layout(),
+      },
+    );
   }
 }
