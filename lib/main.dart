@@ -1,4 +1,5 @@
 import 'package:elfath_account_app/pages/layout.dart';
+import 'package:elfath_account_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import "package:hive_flutter/hive_flutter.dart";
 
@@ -22,7 +23,9 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Cairo',
       ),
       debugShowCheckedModeBanner: false,
-      home: const Layout(),
+      home: LoginPage(
+        tabIndex: 0,
+      ),
       routes: {
         "/layout": (context) => Layout(),
       },
